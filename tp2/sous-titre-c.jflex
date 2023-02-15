@@ -20,23 +20,25 @@ public final static void clearConsole() {
 %}
 number = \{[0-9]+\}
 SUBTITLE = [^{\n][^\n]+
-FSTLINE = [^{\|\n][^\n\|]* 
-LINE = \|[^{\n][^\n]*
 %%
 {number} {
-if(nb_acc%2==0) deb=Integer.parseInt(yytext().substring(1,yylength()-1));
-else end=Integer.parseInt(yytext().substring(1,yylength()-1));
-nb_acc++;
+	if(nb_acc%2==0) deb=Integer.parseInt(yytext().substring(1,yylength()-1));
+	else end=Integer.parseInt(yytext().substring(1,yylength()-1));
+	nb_acc++;
 }
 
 /*{SUBTITLE} {
-clearConsole(); 
-System.out.println(yytext());
-timing = (end-deb)/24;
-pause(timing);}*/
+	clearConsole(); 
+	System.out.println(yytext());
+	timing = (end-deb)/24;
+	pause(timing);
+}*/
 
-{FSTLINE} {clearConsole(); 
-System.out.println(yytext());
+{SUBTITLE} {
+	clearConsole(); 
+	String[] separated = yytext().split("\\|");
+	if(separated[0].equals(yytext())) System.out.println(yytext());
+	else System.out.println(separated[0]+"\n"+separated[1]);
+	timing = (end-deb)/24;
+	pause(timing);
 }
-{LINE} {System.out.println(yytext().substring(1));timing = (end-deb)/24;
-pause(timing);}

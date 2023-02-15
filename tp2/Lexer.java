@@ -30,7 +30,7 @@ class Lexer {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\12\0\1\4\45\0\12\2\101\0\1\1\1\5\1\3\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
+    "\12\0\1\4\45\0\12\2\101\0\1\1\1\0\1\3\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
    * Translates characters to character classes
@@ -43,10 +43,10 @@ class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\3\2\1\0\1\3\1\4";
+    "\1\0\3\1\1\2\1\0\1\3";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[8];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -71,10 +71,10 @@ class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\6\0\14\0\22\0\30\0\36\0\44\0\22";
+    "\0\0\0\5\0\12\0\17\0\5\0\24\0\17";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[8];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -97,12 +97,11 @@ class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\2\2\1\4\1\5\4\2\4\0\1\6"+
-    "\11\0\1\7\1\0\2\7\1\0\1\7\2\0\1\6"+
-    "\1\10\2\0\4\7\1\0\1\7";
+    "\1\2\1\3\2\2\1\4\4\5\3\0\1\6\11\0"+
+    "\1\6\1\7\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[42];
+    int [] result = new int[25];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -140,10 +139,10 @@ class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\1\1\11\1\1\1\0\1\1\1\11";
+    "\1\0\2\1\1\11\1\1\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[8];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -551,30 +550,27 @@ public final static void clearConsole() {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { clearConsole(); 
-System.out.println(yytext());
-timing = (end-deb)/24;
-pause(timing);
-            } 
-            // fall through
-          case 5: break;
-          case 2: 
             { System.out.print(yytext());
             } 
             // fall through
-          case 6: break;
+          case 4: break;
+          case 2: 
+            { clearConsole(); 
+	String[] separated = yytext().split("\\|");
+	if(separated[0].equals(yytext())) System.out.println(yytext());
+	else System.out.println(separated[0]+"\n"+separated[1]);
+	timing = (end-deb)/24;
+	pause(timing);
+            } 
+            // fall through
+          case 5: break;
           case 3: 
-            { System.out.println(yytext().substring(1));
-            } 
-            // fall through
-          case 7: break;
-          case 4: 
             { if(nb_acc%2==0) deb=Integer.parseInt(yytext().substring(1,yylength()-1));
-else end=Integer.parseInt(yytext().substring(1,yylength()-1));
-nb_acc++;
+	else end=Integer.parseInt(yytext().substring(1,yylength()-1));
+	nb_acc++;
             } 
             // fall through
-          case 8: break;
+          case 6: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -224,7 +224,7 @@ int end = 0;
 int timing = 0;
 
 public static void pause(int n){ //pause de n secondes (n * 1000 ms)
- try{ System.out.println(n*1000+"s");Thread.sleep(n * 1000); }
+ try{Thread.sleep(n * 1000); }
  catch( InterruptedException e){ }
 }
   
@@ -556,16 +556,18 @@ public final static void clearConsole() {
           case 4: break;
           case 2: 
             { clearConsole(); 
-System.out.println(yytext());
-timing = (end-deb)/24;
-pause(timing);
+	String[] separated = yytext().split("\\|");
+	if(separated[0].equals(yytext())) System.out.println(yytext());
+	else System.out.println(separated[0]+"\n"+separated[1]);
+	timing = (end-deb)/24;
+	pause(timing);
             } 
             // fall through
           case 5: break;
           case 3: 
             { if(nb_acc%2==0) deb=Integer.parseInt(yytext().substring(1,yylength()-1));
-else end=Integer.parseInt(yytext().substring(1,yylength()-1));
-nb_acc++;
+	else end=Integer.parseInt(yytext().substring(1,yylength()-1));
+	nb_acc++;
             } 
             // fall through
           case 6: break;
