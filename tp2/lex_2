@@ -1,0 +1,6 @@
+#!/bin/bash
+
+jflex sous-titre-c.jflex
+javac Lexer.java
+java Lexer test.SUB
+
