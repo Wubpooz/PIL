@@ -1,0 +1,12 @@
+%%
+%class Lexer
+%standalone
+unsigned int nbl = 0;
+unsigned int nbm = 0;
+unsigned int nbo = 0;
+%%
+\n {nbl++;}
+\r {System.out.println(nbl+nbm+4*nbo);}
+. {nbo++;}
+[ ] {}
+

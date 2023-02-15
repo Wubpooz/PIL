@@ -1,0 +1,6 @@
+#!/bin/bash
+
+jflex entierSquelette.jflex
+javac Lexer.java
+java Lexer entierTest.txt
+

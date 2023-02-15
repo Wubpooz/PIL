@@ -1,0 +1,6 @@
+#!/bin/bash
+
+jflex count.jflex
+javac Lexer.java
+java Lexer countTest.txt
+

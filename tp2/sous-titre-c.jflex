@@ -42,3 +42,4 @@ SUBTITLE = [^{\n][^\n]+
 	timing = (end-deb)/24;
 	pause(timing);
 }
+//<<EOF>> {clearConsole();}
