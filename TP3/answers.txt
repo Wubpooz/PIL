@@ -1,0 +1,6 @@
+1) 
+L->E \n   E->E+T | T  T->T*F | F  F->nb | (E)
+
+2) 
+L -> E -> T -> T*F -> F*F -> (E)*F -> (E+T)*F -> (T+T)*F -> (nb + T)*F -> (nb + T*F)*F -> (nb + F*F)*F -*-> (nb + nb*nb)*nb 
+
