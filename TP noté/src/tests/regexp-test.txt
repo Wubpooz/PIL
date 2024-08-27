@@ -1,0 +1,4 @@
+test : Ceci est un /* test qui accepte /* les * et les sauts de ligne 
+  */ et la suite */
+On vérifie aussi un commentaire vide /**/
+

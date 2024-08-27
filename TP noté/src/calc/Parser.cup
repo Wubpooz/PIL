@@ -1,0 +1,48 @@
+/* NOM Prénom :
+*/
+import java_cup.runtime.*;
+import java.io.*;  
+import java.util.*;
+
+parser code {:
+   public static Integer varA = 0;
+   :}
+
+terminal PLUS, MULT, SUB, DIV, LP, RP, EQ, LEQ, LT, DP, SET, NL ;
+terminal IF, ELSE, ENDIF ;
+terminal Integer CTE, VA ;
+nonterminal Integer expr, terme, facteur ;
+nonterminal lignes, ligne ;
+
+
+start with lignes;
+
+lignes ::=
+       ligne   			
+     | lignes  ligne		
+;
+
+ligne ::=
+       expr:e NL		{: System.out.println(e) ;  :}
+     | VA:k SET expr:e NL	{: varA = e;
+                                   System.out.println(((char)('A' + k)) + "=" + e.toString()) ;  :}
+     | NL    			
+;
+expr ::=
+       expr:e1 PLUS terme:e2  	{: RESULT = e1+e2; :}
+     | expr:e1 SUB terme:e2  	{: RESULT = e1-e2; :}       
+     | terme:e      		{: RESULT = e; :}
+;
+terme ::=
+       terme:e1 MULT facteur:e2 {: RESULT = e1*e2; :}
+     | terme:e1 DIV facteur:e2  {: RESULT = e1 / e2; :}       
+     | facteur:e    		{: RESULT = e; :}
+;
+facteur ::=
+       CTE:n			{: RESULT = n; :}
+     | VA:k			{: RESULT = varA; :} 
+     | LP expr:e RP  		{: RESULT = e; :}
+;
+
+/* Le mot clé endif à la fin d'une expression conditionnelle est utile parce que : A COMPLETER
+*/
